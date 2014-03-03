@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.mossle.activiti</groupId>
+  <artifactId>activiti-basic</artifactId>
+  <packaging>war</packaging>
+  <version>1.0</version>
+  <name>activiti basic</name>
+  <url>http://www.mossle.com/</url>
+  <organization>
+    <name>mossle</name>
+    <url>http://www.mossle.com/</url>
+  </organization>
+
+  <repositories>
+    <repository>
+      <id>central</id>
+      <name>central</name>
+      <url>http://maven.oschina.net/content/groups/public/</url>
+    </repository>
+    <repository>
+      <id>maven2</id>
+      <name>maven</name>
+      <url>http://repo2.maven.org/maven2/</url>
+    </repository>
+  </repositories>
+
+  <dependencies>
+	<dependency>
+	  <groupId>org.activiti</groupId>
+	  <artifactId>activiti-spring</artifactId>
+	  <version>5.14</version>
+	</dependency>
+
+	<dependency>
+	  <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>1.3.170</version>
+	</dependency>
+
+	<dependency>
+	  <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.6</version>
+	</dependency>
+	<dependency>
+	  <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.1.1</version>
+	</dependency>
+
+	<dependency>
+	  <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <version>4.0.2.RELEASE</version>
+	</dependency>
+	<dependency>
+	  <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>4.0.2.RELEASE</version>
+	</dependency>
+  </dependencies>
+
+  <build>
+    <defaultGoal>jetty:run</defaultGoal>
+    <outputDirectory>webapp/WEB-INF/classes</outputDirectory>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <warSourceDirectory>webapp</warSourceDirectory>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.mortbay.jetty</groupId>
+        <artifactId>maven-jetty-plugin</artifactId>
+        <version>6.1.26</version>
+        <configuration>
+          <connectors>
+            <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+            <port>8080</port>
+            <maxIdleTime>3600000</maxIdleTime>
+            </connector>
+          </connectors>
+          <scanIntervalSeconds>10</scanIntervalSeconds>
+          <webDefaultXml>webdefault.xml</webDefaultXml>
+          <webAppSourceDirectory>webapp</webAppSourceDirectory>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.0.2</version>
+        <configuration>
+          <encoding>${project.build.sourceEncoding}</encoding>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+
+</project>
